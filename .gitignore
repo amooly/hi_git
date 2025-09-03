@@ -5,6 +5,9 @@ node_modules/
 out/
 *.vsix
 
+# Test files
+test-extension.js
+
 # OS generated files
 .DS_Store
 .DS_Store?

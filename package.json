@@ -88,7 +88,8 @@
   "scripts": {
     "vscode:prepublish": "npm run compile",
     "compile": "tsc -p ./",
-    "watch": "tsc -watch -p ./"
+    "watch": "tsc -watch -p ./",
+    "test-extension": "node test-extension.js"
   },
   "dependencies": {
     "simple-git": "^3.20.0"
