@@ -1,37 +1,101 @@
 {
   "name": "hi_git",
-  "displayName": "Hi Git",
-  "description": "A sample VS Code extension.",
+  "displayName": "Hi Git - Advanced Git Operations",
+  "description": "A VS Code extension for advanced Git operations with commit visualization and enhanced context menus.",
   "version": "0.0.1",
   "publisher": "Harvey",
   "engines": {
     "vscode": "^1.60.0"
   },
+  "categories": [
+    "Other",
+    "Visualization"
+  ],
+  "keywords": [
+    "git",
+    "version control",
+    "visualization",
+    "commits",
+    "graph"
+  ],
   "activationEvents": [
-    "onCommand:extension.helloWorld"
+    "onStartupFinished"
   ],
   "main": "./out/extension.js",
   "contributes": {
     "commands": [
       {
-        "command": "extension.helloWorld",
-        "title": "Hello World"
+        "command": "hiGit.showCommitGraph",
+        "title": "Show Commit Graph",
+        "category": "Hi Git"
+      },
+      {
+        "command": "hiGit.gitStatus",
+        "title": "Git Status",
+        "category": "Hi Git"
+      },
+      {
+        "command": "hiGit.gitLog",
+        "title": "Git Log",
+        "category": "Hi Git"
+      },
+      {
+        "command": "hiGit.gitAdd",
+        "title": "Git Add",
+        "category": "Hi Git"
+      },
+      {
+        "command": "hiGit.gitCommit",
+        "title": "Git Commit",
+        "category": "Hi Git"
       }
-    ]
+    ],
+    "menus": {
+      "explorer/context": [
+        {
+          "command": "hiGit.gitStatus",
+          "when": "!explorerResourceIsFolder",
+          "group": "2_workspace@1"
+        },
+        {
+          "command": "hiGit.gitAdd",
+          "when": "!explorerResourceIsFolder",
+          "group": "2_workspace@2"
+        },
+        {
+          "command": "hiGit.gitLog",
+          "when": "explorerResourceIsFolder",
+          "group": "2_workspace@1"
+        },
+        {
+          "command": "hiGit.showCommitGraph",
+          "when": "explorerResourceIsFolder",
+          "group": "2_workspace@2"
+        }
+      ],
+      "editor/context": [
+        {
+          "command": "hiGit.gitStatus",
+          "group": "2_git@1"
+        },
+        {
+          "command": "hiGit.gitAdd",
+          "group": "2_git@2"
+        }
+      ]
+    }
   },
   "scripts": {
     "vscode:prepublish": "npm run compile",
     "compile": "tsc -p ./",
-    "watch": "tsc -watch -p ./",
-    "postinstall": "node ./out/compile.js"
+    "watch": "tsc -watch -p ./"
+  },
+  "dependencies": {
+    "simple-git": "^3.20.0"
   },
   "devDependencies": {
     "@types/node": "^24.3.0",
     "@types/vscode": "^1.103.0",
-    "ts-loader": "^8.0.0",
-    "typescript": "^4.9.5",
-    "vscode": "^1.1.36",
-    "webpack": "^5.0.0",
-    "webpack-cli": "^4.0.0"
+    "typescript": "^4.9.5"
   }
 }
